@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Go Game QR Codes</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a href="../index.html">Back to home</a>
+
+    <h1>Can a game of Go fit on a QR code?</h1>
+
+    <p>In July 2025 I ran a rough experiment to determine whether or not it is
+    practical to store a record of a game of Go on a single QR code. This is a
+    summary of the results.</p>
+
+    <p id="note1src"> We start with a game record <sup><a href="#note1">[1]</a></sup>
+    in the standard SGF format<sup><a href="#note2">[2]</a></sup>. It records a
+    game of 256 moves and contains some basic information about the game, such
+    as player names, the date, the result, and the name of the event. There are
+    no variations and no commentary; a file with substantial commentary or
+    variations would likely be too large for any QR code to store, and would
+    need to be cut down to the bare original moves. This sgf file has a size of
+    1708 bytes, and the QR code <sup><a href="#note3">[3]</a></sup> that
+    encodes it is enormous:</p>
+
+    <img src="../resources/00_original.png" />
+
+    <p id="note4src"> Despite its unwieldy size, this QR code has some
+    advantages. Since it directly represents the universal and text-based SGF
+    format, no special software is required to use it. If we want a smaller QR
+    code which still directly encodes SGF, we can strip the .sgf file before
+    encoding by removing all the line breaks and additional game information.
+    This leaves us with the smallest .sgf file <sup><a
+    href="#note4">[4]</a></sup> that records all the moves of the game,
+    weighing in at 1538 bytes. The QR code encoding it is still huge, but
+    slightly less so than that of the unmodified file:</p>
+
+    <img src="../resources/02_stripped.png" />
+
+    <p id="note5src">If we want a much smaller QR code, we need to shrink the
+    data beyond what is possible in the SGF file format. Simply compressing the
+    original file with gzip <sup><a href="#note5">[5]</a></sup> yields a file
+    size of 725 bytes, and a much smaller code:</p>
+
+    <img src="../resources/01_original_compressed.png" />
+
+    <p id="note6src">Compressing the stripped file <sup><a href="#note6">[6]</a></sup>
+    reduces it to 557 bytes, which can be stored on a fairly reasonably sized
+    QR code:</p>
+
+    <img src="../resources/03_stripped_compressed.png" />
+
+    <p id="note7src">More complex software is now needed to decompress the data back into SGF
+    text. Since the data is now binary instead of text, a fair deal of
+    portability and compatibility is lost. This can be remedied by converting
+    the binary data to base64 text before encoding it into a QR code, at a cost
+    to size. The compressed original file encoded in base64
+    <sup><a href="#note7">[7]</a></sup> takes up 981 bytes: </p>
+
+    <img src="../resources/05_original_compressed_base64.png" />
+
+    <p id="note8src">The stripped compressed base64 file
+    <sup><a href="#note8">[8]</a></sup> is 754 bytes:</p>
+
+    <img src="../resources/04_stripped_compressed_base64.png" />
+
+    <p>Of course, if we have no need for commentary or variations, there are
+    more efficient ways to store game records than compressed SGF text. There
+    are 361 points on a 19x19 board, so each move could comfortably fit in 9
+    bits. Assuming an additional 100 bytes of overhead, a 256-move game could
+    fit in 388 bytes. Converting this to base64 with 37% overhead, the data
+    grows to 532 bytes, still less than the stripped and compressed SGF file.
+    Even an unreasonably long game of 500 moves, stored in this way in base64,
+    could fit in 908 bytes, smaller than the original compressed SGF file in
+    base64.</p>
+
+    <p>It seems that storing a Go game in a single QR code is completely
+    reasonable, were the necessary software to be written. This would be useful
+    for instant sharing of game records among people in the same room. For
+    example, after recording your game, you could immediately share the record
+    with your opponent. In public game review sessions, the record for the game
+    being reviewed could instantly be shared with the whole room. It could also
+    be used to share problems such as tsumego. A tsumego problem, even with
+    many variations, would almost certainly have fewer moves than a full game.
+    QR codes could also be printed in books, such as books of puzzles.</p>
+
+    <h2 id="files">Files</h2>
+    <ol>
+      <li><a href="../resources/00_original.sgf">Original game record (.sgf)</a></li>
+      <li><a href="../resources/01_original_compressed.sgf.gz">Original game record compressed (.gz)</a></li>
+      <li><a href="../resources/02_stripped.sgf">Stripped game record (.sgf)</a></li>
+      <li><a href="../resources/03_stripped_compressed.sgf.gz">Stripped game record compressed (.gz)</a></li>
+      <li><a href="../resources/04_stripped_compressed_base64.txt">Stripped compressed game record in base64 (.txt)</a></li>
+      <li><a href="../resources/05_original_compressed_base64.txt">Original compressed game record in base64 (.txt)</a></li>
+    </ol>
+
+    <h2>Notes</h2>
+    <p id="note1">
+      <sup><a href="#note1src">back</a></sup>
+      [1]: See #1 in <a href="#files">Files</a>
+    </p>
+    <p id="note2">
+      <sup><a href="#note1src">back</a></sup>
+      [2]: SGF (Smart Game Format): 
+      <a href="https://en.wikipedia.org/wiki/Smart_Game_Format">Wikipedia</a>,
+      <a href="https://www.red-bean.com/sgf/">Official Specification</a>
+    </p>
+    <p id="note3">
+      <sup><a href="#note1src">back</a></sup>
+      [3]: generated by Kentaro Fukuchi's
+      <a href="https://fukuchi.org/works/qrencode/">qrencode</a>
+      <a href="https://github.com/fukuchi/libqrencode/">(github)</a>
+    </p>
+    <p id="note4">
+      <sup><a href="#note4src">back</a></sup>
+      [4]: See #3 in <a href="#files">Files</a>. I presume this results in the
+      smallest possible .sgf file that records all the game's moves, but I have
+      no actual proof.
+    </p>
+    <p id="note5">
+      <sup><a href="#note5src">back</a></sup>
+      [5]: See #2 in <a href="#files">Files</a>
+    </p>
+    <p id="note6">
+      <sup><a href="#note6src">back</a></sup>
+      [6]: See #4 in <a href="#files">Files</a>
+    </p>
+    <p id="note7">
+      <sup><a href="#note7src">back</a></sup>
+      [7]: See #6 in <a href="#files">Files</a>
+    </p>
+    <p id="note8">
+      <sup><a href="#note8src">back</a></sup>
+      [8]: See #5 in <a href="#files">Files</a>
+    </p>
+  </body>
+</html>
