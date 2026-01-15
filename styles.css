@@ -1,5 +1,10 @@
-body {
+html {
     font-family: Tahoma, Arial, sanf-serif;
     background-color: lightblue;
     font-size: 1.4rem
+}
+
+.inline-image {
+    max-height: 1em;
+    width: auto;
 }
