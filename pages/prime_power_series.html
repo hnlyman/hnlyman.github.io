@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal Math Explorations</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a href="../index.html">Back to home</a>
+
+    <h1>Properties of the Infinite Sum of a Real Number's Prime Powers</h1>
+
+    <p>
+      Consider the series 
+      <img class="inline-image-tall" src="../resources/sum_x_prime_pow.svg" alt="\sum_{i=1}^\infty x^{p_i}" />,
+      where 
+      <img class="inline-image" src="../resources/latex_x.svg" alt="x" />
+      is an arbitrary real number and 
+      <img class="inline-image" src="../resources/p_i.svg" alt="p_i" />
+      is the 
+      <img class="inline-image" src="../resources/i.svg" alt="i" />th
+      prime. That is, the series 
+      <img class="inline-image" src="../resources/expanded_x_prime_pow.svg" alt="x^2 + x^3 + x^5 + x^7 + \cdots" />.
+      Equivalently, this series can be written as
+      <img class="inline-image-tall" src="../resources/sum_beta_x_n.svg" alt="\sum_{n=1}^\infty \beta_n x^n" />,
+      where
+      <img class="inline-image-tall" src="../resources/beta_prime_indicator.svg" alt="\beta_n = \begin{cases}  0 & \text{if n not prime} \\  1 & \text{if n prime} \\  \end{cases}" />.
+      For what values of
+      <img class="inline-image" src="../resources/latex_x.svg" alt="x" />
+      does this series converge?
+    </p>
+
+    <p>
+      Clearly, 
+      <img class="inline-image" src="../resources/abs_beta_n_le.svg" alt="|\beta_n x^n| \le |x^n|" />,
+      so by the direct comparison test the series must converge absolutely
+      wherever the geometric series
+      <img class="inline-image-tall" src="../resources/geometric_x_n.svg" alt="\sum_{n=1}^\infty x^n" />
+      converges absolutely. That is, the series converges absolutely  
+      <img class="inline-image" src="../resources/abs_x_lt_1.svg" alt="|x| \lt 1" />.
+      If
+      <img class="inline-image" src="../resources/abs_x_gt_1.svg" alt="|x| \gt 1" />,
+      then
+      <img class="inline-image-tall" src="../resources/lim_bn_xn.svg" alt="\lim_{n \to \infty} \beta_n x^n \ne 0" />,
+      so the series diverges. If
+      <img class="inline-image" src="../resources/x_eq_1.svg" alt="x=1" />,
+      then the series becomes
+      <img class="inline-image" src="../resources/1+1+1+.svg" alt="1+1+1+\cdots" />,
+      diverging to 
+      <img class="inline-image" src="../resources/plus_inf.svg" alt="+\infty" />.
+      if
+      <img class="inline-image" src="../resources/x_eq_-1.svg" alt="x=-1" />,
+      then the series becomes
+      <img class="inline-image" src="../resources/1-1-1-.svg" alt="1-1-1-\cdots" />,
+      diverging to
+      <img class="inline-image" src="../resources/minus_inf.svg" alt="-\infty" />.
+      We conclude that 
+      <img class="inline-image-tall" src="../resources/sum_x_prime_pow.svg" alt="\sum_{i=1}^\infty x^{p_i}" />,
+      converges on 
+      <img class="inline-image" src="../resources/int_-1_1.svg" alt="(-1, 1)" />
+      and nowhere else on the real line.
+    </p>
+
+    <p>
+      We can now define a function
+      <img class="inline-image" src="../resources/lambda_-11R.svg" alt="\lambda: (-1, 1) \to \mathbb{R}" />
+      as
+      <img class="inline-image-tall" src="../resources/lambda_eq_sum_prime_powers.svg" alt="\lambda(x)= \sum_{i=1}^\infty x^{p_i}" />.
+      Here is the graph of 
+      <img class="inline-image" src="../resources/y_lambda_x.svg" alt="y = \lambda(x)" />,
+      with
+      <img class="inline-image" src="../resources/lambda(x).svg" alt="\lambda(x)" />
+      approximated up to the
+      <img class="inline-image" src="../resources/x41.svg" alt="x^{41}" />
+      term:
+    </p>
+
+    <img
+      style="max-height: 30em;"
+      src="../resources/lambda_x_graph.png"
+      alt="graph of y=lambda(x)"
+    >
+
+    <p>
+      Based on this graph, it would appear that
+      <img class="inline-image" src="../resources/lambda.svg" alt="\lambda" />
+      is continuous, that
+      <img class="inline-image-tall" src="../resources/left_limit_lambda_1.svg" alt="\lim_{x->1^-} \lambda(x)" />
+      is
+      <img class="inline-image" src="../resources/plus_inf.svg" alt="+\infty" />,
+      and that
+      <img class="inline-image-tall" src="../resources/right_limit_lambda_-1.svg" alt="\lim_{x->-1^+} \lambda(x)" />
+      is
+      <img class="inline-image" src="../resources/minus_inf.svg" alt="-\infty" />.
+      It also appears that the function is increasing for
+      <img class="inline-image" src="../resources/latex_x.svg" alt="x" />-values
+
+      from the left edge of the domain to about -0.5, then decreasing up to
+      about zero, then increasing again up to the right edge of the domain. Let
+      us see how many of these properties we can prove.
+
+    </p>
+
+    <p>
+      Since
+      <img class="inline-image" src="../resources/lambda.svg" alt="\lambda" />
+      is defined by a convergent power series, it is an analytic function,
+      which implies, among other things, that it is continuous. The derivative
+      of 
+      <img class="inline-image" src="../resources/lambda.svg" alt="\lambda" />
+      is
+      <img class="inline-image-tall" src="../resources/derivative_lambda.svg" alt="\frac{d}{dx} \lambda(x) = \sum_{i=1}^\infty p_i x^{p_i - 1}" />,
+      or 
+      <img class="inline-image" src="../resources/derivative_lambda_expanded.svg" alt="\lambda^{\prime}(x) = 2x + 3x^2 + 5x^4 + 7x^6 + \cdots" />.
+      Since all primes besides 2 are odd, every term in this series except the
+      first is of even order. For
+      <img class="inline-image" src="../resources/x_lt_0.svg" alt="x \lt 0" />,
+      all the even-order terms in the definition of
+      <img class="inline-image" src="../resources/lambda_prime.svg" alt="\lambda^\prime" />
+      are positive and the single odd-order term is negative. Whether
+      <img class="inline-image" src="../resources/lambda.svg" alt="\lambda" />
+      is decreasing or increasing, therefore, depends on whether
+      <img class="inline-image" src="../resources/2x_gt_polynom.svg" alt="2x > 3x^2 + 5x^4 + 7x^6" />.
+      Approximately, it seems that
+      <img class="inline-image" src="../resources/lambda.svg" alt="\lambda" />
+      is increasing on (-1, -0.457) and decreasing on (-0.457, 0).
+
+      For
+      <img class="inline-image" src="../resources/x_gt_0.svg" alt="x \gt 0" />,
+      each term is positive, so 
+      <img class="inline-image" src="../resources/lambda_prime.svg" alt="\lambda^\prime" />
+      is positive, so
+      <img class="inline-image" src="../resources/lambda.svg" alt="\lambda" />
+      is increasing.
+
+      At the moment I am unable to find proofs of the one-sided limits at 1 and
+      -1.
+
+    </p>
+
+  </body>
+</html>
