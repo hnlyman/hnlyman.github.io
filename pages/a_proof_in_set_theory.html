@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{a}xA is not A</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a href="../index.html">Back to home</a>
+
+    <h1>A Proof in Set Theory</h1>
+
+    <p>
+      Exercise 9(c) in chapter 3.3 of O'Leary's <i>The Structure of Proof:
+      With Logic and Set Theory</i> asks the reader to prove that
+      <img class="inline-image" src="../resources/set_0xZ_not_Z.svg" alt="\{0\} \times \mathbb{Z} \ne \mathbb{Z}" />.
+      The set theory in the book is fairly simple and naive; numbers are not
+      sets, and 
+      <img class="inline-image" src="../resources/mathbb_Z.svg" alt="\mathbb{Z}" />
+      is never properly defined. The answer to the exercise is something like
+      "<img class="inline-image" src="../resources/pair_zero_in_0Z.svg" alt="(0, 0) \in \set{0} \times \mathbb{Z}" />
+      but
+      <img class="inline-image" src="../resources/pair_zero_not_in_Z.svg" alt="(0, 0) \notin \mathbb{Z}" />."
+      This exercise made me wonder, though, whether it is possible to define 
+      <img class="inline-image" src="../resources/mathbb_Z.svg" alt="\mathbb{Z}" />
+      in such a way that 
+      <img class="inline-image" src="../resources/set_0xZ=Z.svg" alt="\{0\} \times \mathbb{Z} = \mathbb{Z}" />.
+
+      My investigations led me to the following theorem and proof, which,
+      though seemingly trivial and probably useless, I find pretty interesting.
+    </p>
+
+    <p>
+      Here we use the "short" definition of the ordered pair, that is
+      <img class="inline-image" src="../resources/short_def_ordered_pair.svg" alt="\mathbb{Z}" />.
+      An <i>object</i> is anything that can be a member of a set.
+    </p>
+
+    <p>
+      <b>THEOREM:</b> If
+      <img class="inline-image" src="../resources/a.svg" alt="a" />
+      is an object and
+      <img class="inline-image" src="../resources/A.svg" alt="A" />
+      is a nonempty set, 
+      <img class="inline-image" src="../resources/set_axA_not_A.svg" alt="\{a\} \times A \ne A" />.
+    </p>
+
+    <p>
+      <b>PROOF:</b> Suppose, for the sake of contradiction, that 
+      <img class="inline-image" src="../resources/set_axA=A.svg" alt="\{a\} \times A = A" />.
+      since 
+      <img class="inline-image" src="../resources/A.svg" alt="A" />
+      is nonempty, let
+      <img class="inline-image" src="../resources/x_1.svg" alt="x_1" />
+      be an element of 
+      <img class="inline-image" src="../resources/A.svg" alt="A" />.
+      Now, for each natural number 
+      <img class="inline-image" src="../resources/i_ge_2.svg" alt="i \ge 2" />,
+      let
+      <img class="inline-image" src="../resources/x_i.svg" alt="x_i" />
+      be the element of
+      <img class="inline-image" src="../resources/A.svg" alt="A" />
+      such that
+      <img class="inline-image" src="../resources/iterate_(a,x_i).svg" alt="x_{i-1} = (a, x_i)" />,
+      i.e.
+      <img class="inline-image" src="../resources/short_pair_expanded_1.svg" alt="x_1 = \set{a, \set{a, x_2}}" />,
+      <img class="inline-image" src="../resources/short_pair_expanded_2.svg" alt="x_2 = \set{a, \set{a, x_3}}" />,
+      etc. Now define the set
+      <img class="inline-image" src="../resources/B.svg" alt="B" />
+      as follows:
+      <img class="inline-image" src="../resources/B_set_definition.svg" alt="B = \set{x_i \mid i=1, 2, 3, \cdots} \cap \set{\set{a, x_i} \mid i=1,2,3, \cdots}" />,
+      i.e. 
+      <img class="inline-image" src="../resources/set_B_def_expanded.svg" alt="B = \set{x_1, \set{a, x_1}, x_2, \set{a, x_2}, \cdots}" />.
+      For each natural
+      <img class="inline-image" src="../resources/i_ge_1.svg" alt="i \ge 1" />,
+      we have
+      <img class="inline-image" src="../resources/B_xi_not_disj.svg" alt="\set{a, x_{i+1}} \in B \cap x_i" />
+      and
+      <img class="inline-image" src="../resources/B_set_a_xi_not_disj.svg" alt="x_i \in B \cap \set{a, x_i}" />.
+      That is, each element of 
+      <img class="inline-image" src="../resources/B.svg" alt="B" />
+      is not disjoint with
+      <img class="inline-image" src="../resources/B.svg" alt="B" />,
+      contradicting the Axiom of Regularity. By contradiction,
+      <img class="inline-image" src="../resources/set_axA=A.svg" alt="\{a\} \times A = A" />
+      must be false.
+      ☐
+    </p>
+
+    <p>
+      This theorem clearly indicates that it is impossible to define
+      <img class="inline-image" src="../resources/mathbb_Z.svg" alt="\mathbb{Z}" />
+      such that 
+      <img class="inline-image" src="../resources/set_0xZ=Z.svg" alt="\{0\} \times \mathbb{Z} = \mathbb{Z}" />.
+
+      The proof leans heavily on the use of the "short" definition of the
+      ordered pair. I believe that this proof could be altered to use the more
+      standard Kuratowski definition, or any other "reasonable" definition, but
+      I have not yet tried.
+    </p>
+
+  </body>
+</html>
