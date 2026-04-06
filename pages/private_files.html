@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Private Files on a Static, Open-Source Website</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a href="../index.html">Back to home</a>
+
+    <h1>Private Files on a Static, Open-Source Website</h1>
+
+    <p> This site is pretty simple. It's completely static, and serves no
+    Javascript whatsoever. I write each and every page in raw HTML (with a drop
+    of CSS here and there) using Vim. It does not rely on content from other
+    sites&mdash;every resource it loads is contained in <a
+    href="https://github.com/hnlyman/hnlyman.github.io">its public Github
+    repo</a>. I use this site to publish short articles or other pieces of
+    writing, some of which take weeks to write. Given all this, it is not
+    obvious where I should store my drafts and works-in-progress for writing
+    that will eventually be published on this site. I would like them to be
+    stored in pretty much the same place as the published writing on my
+    machine, so that they can render in pretty much the same environment as
+    they will once published. For convenience, I would also like them to be
+    stored in the same Git repo as the published work, but they should not be
+    publicly visible. </p>
+
+    <p> To reconcile these seemingly contradictory requirements, I decided to
+    store my works-in-progress, and other site files meant to temporarily be
+    kept private, in a single encrypted archive (called
+    <code>private.tar.gz.gpg</code>) in the public repo. I wrote the Bash
+    script <a href="../resources/priv.sh"><code>priv.sh</code></a><sup
+    id="note1src"><a href="#note1">[1]</a></sup> to manage this archive. The
+    workflow looks something like this:
+
+    <ul>
+      <li> Files meant to be kept private for now are marked with the prefix
+      <code>_pr.</code> on their filenames. All files with this prefix are
+      gitignored. </li>
+      <li> <code>priv.sh zip</code> copies all the files marked as private into
+      an archive encrypted using the contents of the file
+      <code>_pr.PASSWORD</code> as the key. </li>
+
+      <li> <code>priv.sh unzip</code> decrypts the archive using
+      <code>_pr.PASSWORD</code> and restores all the files stored within to
+      their original locations. </li>
+    </ul>
+    </p>
+
+    <p> This makes the writing process pretty convenient. I just edit the
+    prefixed files, and when I'm ready to publish them, I take away the prefix.
+    To save and back up my work, I only need to periodically run <code>priv.sh
+    zip</code> and commit the <code>private.tar.gz.gpg</code> file to the
+    site's repo. If I want to keep working from a new machine, or look through
+    previous versions of my works-in-progress, or restore work that was somehow
+    lost, I can do so with most of the ordinary convenience of Git and Github.
+    </p>
+
+    <p> If you're interested in the implementation details, take a look at <a
+    href="../resources/priv.sh">the script itself</a>.<sup id="note1src"><a
+    href="#note1">[1]</a></sup> It's commented up quite a bit. </p>
+
+    <h2>Notes</h2>
+
+    <p id="note1"> <sup><a href="#note1src">back</a></sup> [1]: This is a
+    snapshot of the <code>priv.sh</code> file from the time this article was
+    published. You can check out the current version live on this site <a
+    href="../priv.sh">here</a>, or on Github <a
+    href="https://github.com/hnlyman/hnlyman.github.io/blob/main/priv.sh">here</a>
+    </p>
+
+  </body>
+</html>
