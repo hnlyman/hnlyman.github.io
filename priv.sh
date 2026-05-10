@@ -85,6 +85,7 @@ case "$1" in
         copy_from_tmp $2
         ;;
     *)
+        echo "No argument given. Please specify 'zip' or 'unzip'."
         exit 1
         ;;
 esac
