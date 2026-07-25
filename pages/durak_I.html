@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Durak I: Forms of the Game</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a href="../index.html">Back to home</a>
+
+    <h1>Durak I: Forms of the Game</h1>
+
+    <p> Durak is a traditional Russian card game, the object of which is to get
+    rid of all your cards: the last player left holding cards loses the game
+    and is named the durak ('fool'). There is so much variation in the rules of
+    durak that it might be better described as a family of related games,
+    rather than a single, unified game. </p>
+
+    <p> In this series of articles, I will analyze durak in various ways using
+    mathematical methods. Before doing any analysis, though, it's important to
+    define, with the appropriate amount of rigor, the forms of durak that will
+    be under investigation. Those familiar with the rules and variations of
+    durak might only need to skim this article, but should refer back to it
+    while reading the later articles whenever precise definitions or rules are
+    in question. The rules are not described in rigorous mathematical terms,
+    but are specific enough that mathematical models of game situations can be
+    easily and naturally conjured when necessary. </p>
+
+    <h2>Podkidnoy Durak</h2>
+
+    <p> Podkidnoy ('throw in') Durak may be the most common form of the game.
+    </p>
+
+    <p> The game is played by 2-6 players with a 36-card deck, formed by
+    removing the 2s, 3s, 4s, and 5s from a standard 52-card deck. To begin, six
+    cards are dealt privately to each player. The remaining cards are left to
+    form the <b>draw deck</b>, whose bottom card is flipped face up (while
+    staying at the bottom) and left visible to all players. The suit of this
+    face-up card will be the <b>trump suit</b> for the game. Cards with this
+    suit are called <b>trump cards</b>.  If there are 6 players, there will be
+    no draw deck, and the trump suit may be picked in some arbitrary manner.
+    The <b>direction of play</b> traditionally goes clockwise around the table.
+    </p>
+
+    <p> The game consists of a series of <b>bouts</b>. In each bout, a certain
+    player is the <b>attacker</b>. At the beginning of the game, the role of
+    first attacker can be assigned randomly or by any method. The attacker
+    begins the bout by placing down a card from their hand, face up, to be the
+    initial <b>attack card</b>. The next player after the attacker is the
+    <b>defender</b>, who can <b>defeat</b> any attack card by placing a card
+    from their hand, face up, on top of it as a <b>defense card</b>. A card may
+    only be used to defeat a particular attack card if it is either the same
+    suit as the attack card but of a higher rank (aces are high); or if it is a
+    trump card and the attack card is not. At any time during the bout, any
+    player who is not the defender may add an additional attack card from their
+    hand, so long it has the same rank as some attack or defense card already
+    in play. The total number of attack cards in play must neither exceed six
+    nor the number of cards the defender was holding just before the start of
+    the bout&mdash;if either of these limits is reached, no one may add more
+    attack cards. The bout ends in one of two ways: either the defender is
+    unable or unwilling to defeat all the attack cards, and must take all the
+    attack and defense cards in play into their hand; or the defender defeats
+    every attack card and the other players are unwilling or unable to add
+    more, in which case all the attack and defense cards are discarded. If the
+    defender takes the cards, the other players may add new attack cards
+    retroactively (following the usual rules and limits for legal attack
+    cards), which the defender must also take into their hand.  </p>
+
+    <p> After a bout, players with fewer than six cards left in their hand must
+    draw from the draw deck until they have six cards or the draw deck is
+    emptied. The attacker of the bout draws first, and then the other players,
+    following the normal direction of play, except the defender, who is
+    skipped and draws last. If the defender successfully defeated all the
+    attack cards, they become the attacker for the next bout. Otherwise, the
+    next player after them becomes the new attacker. </p>
+
+    <p> If a player has no cards at the end of a bout, and the draw deck is
+    empty when it comes time for them to draw, they are out of the game and
+    removed from the cycle of players. When there is only one player left, that
+    player is deemed the durak. </p>
+
+    <h2>Perevodnoy Durak</h2>
+
+    <p> Perevodnoy ('transfer') Durak follows the same rules as Podkidnoy
+    Durak, with one additional rule: during a bout, if no defense cards have
+    been played yet, the defender may "pass on" the attack by adding a new
+    attack card, which must be of the same rank as the other attack cards. By
+    doing this, they become the attacker, and the next player becomes the new
+    defender. This cannot be done if it would violate the usual rules for the
+    number of valid attack cards (i.e. the number of attack cards facing the
+    new defender exceeds the number of cards in their hand). </p>
+
+    <h2>Proyezdnoy Rule<sup><a id="note1src" href="#note1">[1]</a></sup></h2>
+
+    <p> Perevodnoy Durak is sometimes played with an additional way to pass on
+    attacks: if the defender holds the trump card of the appropriate rank, and
+    all the conditions for passing on the attack are met, they may pass on the
+    attack by simply showing the trump card instead of putting it down as an
+    attack card. Playing the trump card as an attack card to pass on the attack
+    is still allowed, just not required. One may not pass on the attack using
+    the same trump card more than once in a single bout. </p>
+
+    <h2>Generalized Durak</h2>
+
+    <p> Durak is ordinarily played with a deck with 9 ranks, 4 suits, and 2-6
+    players. Many results about the game can be generalized to a games that are
+    played with the same gameplay rules, but with a different number of suits,
+    ranks, and players. These games are not forms of durak proper, but can be
+    considered forms of <b>generalized durak</b>. To keep things reasonable, we
+    will require that there be at least two ranks and two suits, that no
+    identical cards (i.e. two cards with the same rank and same suit) exist,
+    and that there be enough cards to deal everyone in with six cards (i.e. the
+    number of suits times the number of ranks is at least six times the number
+    of players). </p> 
+
+    <p> A game of generalized durak may follow any of the durak rulesets. Thus,
+    we may speak of, for example, generalized Podkidnoy durak or generalized
+    Perevodnoy durak. </p>
+    
+    <h2>Durak Endgame</h2>
+
+    <p> The durak endgame is a form of durak in which: </p>
+
+    <ul>
+      <li>There are only two players,</li>
+      <li>the draw deck is empty, and</li>
+      <li>both players know each others' hands.</li>
+    </ul>
+
+    <p> The durak endgame is a game without chance or hidden information<sup><a
+    id="note2src" href="#note2">[2]</a></sup>. If players have perfect memory,
+    then an ordinary game of durak must become a durak endgame before it can
+    end. This is true because: </p>
+
+    <ul>
+      <li>Players exit the game one-by-one, so if the game is to end, there
+      must eventually exactly two players left.</li>
+      <li>Players cannot exit the game until the draw deck is empty. In
+      particular, when there are two players, the draw deck must be empty in
+      order for the game to end.</li>
+      <li>A player with perfect memory will know every card that has been
+      discarded, since only attack and defense cards are discarded, and these
+      are visible to everyone. Once there are only two players and the draw
+      deck is empty, each player will know that their opponent's hand consists
+      of exactly those cards that are not in their own hand and haven't been
+      discarded. </li>
+    </ul>
+
+    <p> A durak endgame may be played with any of the durak rulesets, and with
+    a non-standard deck. We might therefore refer to, for example, a Perevodnoy
+    durak endgame, or a generalized Podkidnoy durak endgame. The endgame may be
+    very brief&mdash;it need not even include a single bout. </p>
+
+    <h2>Notes</h2>
+
+    <p id="note1">
+      <sup><a href="#note1src">back</a></sup>
+
+      According to <a
+      href="https://www.pagat.com/beating/perevodnoy_durak.html#pass"
+      >pagat.com's page on Perevodnoy Durak</a>, the variation of the game with
+      this rule is called <i>Perevodnoy durak s proyezdnym</i> in Russian,
+      which is glossed as 'transfer fool with a pass card'. I will refer to it
+      as 'Perevodnoy durak with the Proyezdnoy rule'. 
+    </p>
+
+    <p id="note2">
+      <sup><a href="#note2src">back</a></sup>
+      [2]: It might therefore be called a game of <b>perfect information</b>,
+      but the exact definition of that term varies, so I have avoided using it.
+    </p>
+
+  </body>
+</html>
