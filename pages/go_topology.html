@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Playing Go in Five Topologies</title>
+    <link rel="stylesheet" href="../styles.css">
+
+    <style>
+      img {
+        max-height: 20em;
+        max-width: 80vw;
+      }
+
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="../index.html">Back to home</a>
+
+    <h1>Playing Go in Five Topologies</h1>
+
+    <h2>Closed Disk</h2>
+
+    <p> Topologically, a standard game of Go takes place on a closed disk. The
+    board is finite and bounded on all sides by edges. This means that some
+    points on the board have more connections than others: a stone placed in
+    the center of an empty board has four liberties, but one placed in the
+    corner only has two. </p>
+
+    <table>
+      <thead>
+        <th> <img src="../resources/closed_disk.png" alt="A representation of a
+        closed disk." /> </th>
+
+        <th> <img src="../resources/9x9_thick_edges.png" alt="a standard 9x9 go
+        board with thickened black lines at the edges" /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> A closed disk. </td>
+          <td> A standard 9x9 go board. The thick black lines indicate hard
+          edges. </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Torus</h2>
+
+    <p> Toroidal go is a commonly played variation, in which the board 'wraps
+    around' horizontally and vertically: the upper and lower edges are
+    connected, and so are the left and right edges. Every point on the board
+    touches exactly four other points. For instance, the top-left corner is
+    connected to the point below it, the point to its right, the bottom-left
+    corner, and the top-right corner. This is equivalent to playing on the
+    surface of a torus. </p>
+
+    <table>
+      <thead>
+        <th> <img src="../resources/blue_torus.png" alt="A digital rendering of
+        a torus." /> </th>
+
+        <th> <img src="../resources/9x9_torus.png" alt="A toroidal go board:
+        the left and right edges are red with upward arrows, and the top and
+        bottom edges are blue with leftward arrows." /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> A torus. </td>
+          <td> Toroidal go: pairs of edges of the same color are connected to
+          each other, and the parallel arrows indicate that directions do not
+          change in the transition. </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p> There are two ways to draw a nontrivial loop (i.e. a closed path that
+    cannot be shrunk down to a point) on a torus: either go around the hole, or
+    go through the hole. These correspond to the two ways to make loops of
+    stones on the board: vertically and horizontally. </p>
+
+    <img src="../resources/blue_torus_with_loops.png" alt="A torus with the two
+    nontrivial loops drawn: loop A goes around the whole and loop B goes
+    through it." />
+    <img src="../resources/9x9_torus_loopA.png" alt="A vertical line of stones
+    on the toroidal go board represents loop A." />
+    <img src="../resources/9x9_torus_loopB.png" alt="A horizonal line of stones
+    on the toroidal go board represents loop B." />
+
+    <p> On their own, these loops do not create eyes or enclose any territory.
+    Stones surrounding eyes or areas of territory on the board correspond to
+    trivial loops on a torus, which do not surround or incorporate the hole.
+    </p>
+
+    <table>
+      <thead>
+        <th> <img src="../resources/blue_torus_trivial_loops.png" alt="A torus
+        with two trivial loops drawn" /> </th>
+
+        <th> <img src="../resources/enclosed_areas_torusgo.png" alt="A group in
+        the middle of a toroidal go board surrounding one point, and one
+        straddling the edge and surrounding two." /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> Two trivial loops on a torus. </td>
+          <td> Two examples of enclosed territory/eyes in toroidal go. </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p> For more on toroidal go, see <a
+    href="https://senseis.xmp.net/?ToroidalGo">its article on Sensei's
+    Library</a>. </p>
+
+    <h2>Sphere</h2>
+
+    <p> The surface of the Earth is made into a grid using two types of lines:
+    lines of latitude run East-West, forming a series of parallel circles that
+    band the globe; while lines of longitude run North-South, all converging at
+    the poles. If we use this system as inspiration, we end up with a board
+    where the horizontal lines wrap around, as in torus go, but the vertical
+    lines all converge at special points corresponding to the North and South
+    Poles. Every point on the board has four neighbors, except the pole points,
+    which have as many neighbors as there are vertical lines on the board. </p>
+
+    <table>
+      <thead>
+        <th> <img src="../resources/sphere_latlong.png" alt="A wireframe sphere
+        with lines of latitude and longitude." /> </th>
+        <th> <img src="../resources/sphere_board_poles.png" alt="Spherical go:
+        the left and right edges are blue with upward arrows; lines are drawn
+        connecting each vertical line with each of two dots labeled 'north
+        pole' and 'south pole'." /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> A sphere with a latitude-longitude grid. </td>
+          <td> A sphere go board. </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p> On an ordinary go board, each of the four edges is as wide or long as
+    the rest of the board. In spherical go, each of the two edges is only one
+    point wide. The pole points are still edges, though, meaning they can serve
+    as one of a boundaries for an area of territory. All loops on a sphere are
+    trivial, so, unlike in toroidal go, a horizontal loop of stones across the
+    board does enclose territory and have one eye. </p>
+
+    <h2>Möbius Strip</h2>
+
+    <p> A Möbius strip can be formed by gluing two opposite sides of a
+    rectangle together after twisting one of them 180 degrees. This translates
+    quite easily to go boards: the top and bottom edges remain edges, while the
+    left and right sides are connected in opposite directions, so that the
+    top-left corner is connected to the bottom-right, and so on. </p>
+
+    <table>
+      <thead>
+        <th> <img
+        src="../resources/Creating_a_Mobius_Strip_from_a_rectangle.gif" alt="An
+        animation of a rectangle being bent into a Möbius strip." /> </th>
+
+        <th> <img src="../resources/10x10_Möbius.png" alt="A Möbius strip go
+        board: the top and bottom edges are thickened, and the left and right
+        edges are blue with arrows pointing in opposite directions." /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> A rectangle being bent into a Möbius strip. </td>
+          <td> Möbius strip go: there are two hard edges, and two connected
+          edges running in opposite directions. </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p> A loop in Möbius strip go is ordinarily twice as long as a loop in
+    toroidal go on the same board size&mdash;it must cross the board twice. A
+    loop on the center line of the board, however, would only need to cross the
+    board once, since the center line loops back to itself. To avoid this, we
+    can simply use a board without a center line, i.e. one with an even number
+    of lines (the one above is 10x10). These nontrivial loops do create eyes
+    and enclose territory on a Möbius strip board, since there is a hard edge
+    on either side to form the other boundary of the eye/territory. Points in
+    Möbius strip go have either 4 (non-edge) or 3 (edge) neighbors. </p>
+
+    <table>
+      <thead>
+        <th> <img src="../resources/Orange_Mobius_loop.png" alt="A Möbius strip
+        with a loop across it drawn." /> </th>
+
+        <th> <img src="../resources/10x10_Möbius_loop.png" alt="A Möbius strip
+        go board with the second-to-top and second-to-bottom rows filled in
+        with black stones, forming a loop." /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> A loop on a Möbius strip. </td>
+          <td> A loop in Möbius strip go. This group has one eye and encloses
+          20 points of territory. </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Double Torus</h2>
+
+    <p> A double torus (or, more technically, a sphere with two handles) is a
+    surface similar to a torus, but with two holes instead of one. It can be
+    formed by cutting holes in two tori and gluing the holes together. We can
+    create a double torus go board out of two single torus go boards by the
+    same process: tengen is removed from each board, and the voids left behind
+    are connected to each other, so that a stone placed next to the tengen-void
+    on one board has a liberty at the same spot on the other board. Every point
+    has exactly four neighbors. </p>
+
+    <table>
+      <thead>
+        <th> <img src="../resources/double_torus.png" alt="A digital rendering
+        of a double torus." /> </th>
+
+        <th> <img src="../resources/9x9_double_torus_marked.png" alt="A double
+        torus go board: two 9x9 go boards next to each other, each with a gap
+        where tengen should be. Each pair of opposite sides on each board has
+        matching colors, with arrows in the same direction.  The points
+        bordering the tengen-void are colored in, the same colors on both
+        boards." /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> A double torus. </td>
+          <td> Double torus go: each marked point neighbors the marked point of
+          the same color on the other board. </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p> There are six ways to make a nontrivial loop on a double torus. Four of
+    them are very similar to the nontrivial loops on a single torus: around
+    each hole and through each hole. The corresponding loops in double torus go
+    are the horizontal and vertical loops across each board&mdash;very similar
+    to the loops of single-toroidal go. The other two ways are to go around
+    both holes or to go through both holes. Their go equivalents make use of
+    the connection between the two boards: </p>
+
+    <table>
+      <thead>
+        <th> <img src="../resources/double_torus_loops.png" alt="A double torus
+        with two loops drawn: loop A goes around both holes and loop B goes
+        through both." /> </th>
+
+        <th> <img src="../resources/9x9_double_torus_loops.png" alt="A double
+        torus go board with the two loops drawn: loop A travels through the
+        holes to traverse the vertical center lines of each board; loop B does
+        the same horizontally." /> </th>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td> The final two nontrivial loops on a double torus. </td>
+          <td> The equivalent loops on a double torus go board. </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p> Somewhat counterintuitively, the holes on a double torus go board do
+    not correspond to the holes on a double torus. Instead, they represent the
+    site where two tori are joined to form the double torus. As in toroidal go,
+    a trivial loop is needed to form territory or eyes. </p>
+
+  </body>
+</html>
